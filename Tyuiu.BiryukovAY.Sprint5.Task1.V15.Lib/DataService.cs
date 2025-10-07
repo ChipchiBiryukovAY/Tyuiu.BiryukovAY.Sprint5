@@ -8,7 +8,6 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
     {
         public string SaveToFileTextData(int start, int end)
         {
-            List<string> lines = new List<string>();
             StringBuilder resultBuilder = new StringBuilder();
 
             for (int x = start; x <= end; x++)
@@ -20,11 +19,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
                     resultBuilder.Append("\\n");
 
                 resultBuilder.Append(roundedValue);
-                lines.Add($"{x}\t\t{roundedValue}");
             }
-
-            string path = Path.Combine(Environment.CurrentDirectory, "OutPutFileTask1.txt");
-            File.WriteAllLines(path, lines);
 
             return resultBuilder.ToString();
         }

@@ -9,14 +9,14 @@ internal class Program
         string result = ds.SaveToFileTextData(-5, 5);
         Console.WriteLine($"Результат: {result}");
 
-        string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask1.txt";
-        Console.WriteLine($"Файл создан: {path}");
+        string[] values = result.Split("\\n");
+        Console.WriteLine("\nТаблица результатов:");
+        Console.WriteLine("x\t\tF(x)");
+        Console.WriteLine("------------------------");
 
-        Console.WriteLine("\nСодержимое файла:");
-        string[] fileContent = File.ReadAllLines(path);
-        foreach (string line in fileContent)
+        for (int i = 0, x = -5; x <= 5; x++, i++)
         {
-            Console.WriteLine(line);
+            Console.WriteLine($"{x}\t\t{values[i]}");
         }
 
         Console.ReadKey();
