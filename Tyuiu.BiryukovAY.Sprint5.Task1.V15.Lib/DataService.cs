@@ -5,7 +5,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
 {
     public class DataService : ISprint5Task1V15
     {
-        public string SaveToFileTextData(int start, int stop)
+        public string SaveToFileTextData(int start, int end)
         {
             List<string> lines = new List<string>();
 
