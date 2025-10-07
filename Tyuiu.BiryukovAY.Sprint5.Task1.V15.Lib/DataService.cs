@@ -17,20 +17,34 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
                 double fx = CalculateFx(x);
                 string line = $"{x}\t\t{Math.Round(fx, 2)}";
                 lines.Add(line);
+                Console.WriteLine(line); 
             }
 
-            string path = Path.Combine(Directory.GetCurrentDirectory(), "OutPutFileTask1.txt");
-            File.WriteAllLines(path, lines);
+            string fileName = "OutPutFileTask1.txt";
+            string path = Path.Combine(Environment.CurrentDirectory, fileName);
 
-            return "Функция протабулирована успешно";
+            try
+            {
+                File.WriteAllLines(path, lines);
+                return $"Функция протабулирована успешно. Файл: {path}";
+            }
+            catch (UnauthorizedAccessException)
+            {
+                string tempPath = Path.Combine(Path.GetTempPath(), fileName);
+                File.WriteAllLines(tempPath, lines);
+                return $"Функция протабулирована успешно. Файл сохранен в Temp: {tempPath}";
+            }
         }
 
         private double CalculateFx(int x)
         {
-            if (x == 0.4)
+            // Проверка деления на ноль
+            double denominator = x - 0.4;
+            if (Math.Abs(denominator) < 0.000001)
                 return 0;
 
-            return (Math.Cos(x) / (x - 0.4)) + (Math.Sin(x) * 8 * x) + 2;
+            return (Math.Cos(x) / denominator) + (Math.Sin(x) * 8 * x) + 2;
         }
     }
+    
 }
