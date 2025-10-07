@@ -9,7 +9,16 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task0.V9.Test
         [TestMethod]
         public void TestMethod1()
         {
-            string path = @"C:\Users\User\source\repos\Tyuiu.BiryukovAY.Sprint5\Tyuiu.BiryukovAY.Sprint5.Task0.V9\bin\Debug\OutPutFileTask0.txt";
+            DataService ds = new DataService();
+
+            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask0.txt";
+
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
+
+            string result = ds.SaveToFileTextData(3);
 
             FileInfo fileInfo = new FileInfo(path);
             bool fileExists = fileInfo.Exists;

@@ -7,7 +7,6 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task0.V9.Lib
     {
         public string SaveToFileTextData(int x)
         {
-            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask0.txt";
             if (x == 1 || x == -1)
             {
                 throw new ArgumentException("x не может быть равен 1 или -1 (деление на ноль)");
@@ -18,6 +17,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task0.V9.Lib
             double y = num / den;
 
             string z = Math.Round(y, 3).ToString();
+            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask0.txt");
             File.WriteAllText(path, z);
 
             return z;
