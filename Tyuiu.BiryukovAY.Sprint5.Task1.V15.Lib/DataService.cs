@@ -1,5 +1,6 @@
 ﻿using System;
 using System.IO;
+using System.Text;
 using tyuiu.cources.programming.interfaces.Sprint5;
 namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
 {
@@ -8,37 +9,28 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
         public string SaveToFileTextData(int start, int end)
         {
             List<string> lines = new List<string>();
-
-            lines.Add("x\t\tF(x)");
-            lines.Add("------------------------");
+            StringBuilder resultBuilder = new StringBuilder();
 
             for (int x = start; x <= end; x++)
             {
                 double fx = CalculateFx(x);
-                string line = $"{x}\t\t{Math.Round(fx, 2)}";
-                lines.Add(line);
-                Console.WriteLine(line); 
+                string roundedValue = Math.Round(fx, 2).ToString().Replace(",", ".");
+
+                if (x != start)
+                    resultBuilder.Append("\\n");
+
+                resultBuilder.Append(roundedValue);
+                lines.Add($"{x}\t\t{roundedValue}");
             }
 
-            string fileName = "OutPutFileTask1.txt";
-            string path = Path.Combine(Environment.CurrentDirectory, fileName);
+            string path = Path.Combine(Environment.CurrentDirectory, "OutPutFileTask1.txt");
+            File.WriteAllLines(path, lines);
 
-            try
-            {
-                File.WriteAllLines(path, lines);
-                return $"Функция протабулирована успешно. Файл: {path}";
-            }
-            catch (UnauthorizedAccessException)
-            {
-                string tempPath = Path.Combine(Path.GetTempPath(), fileName);
-                File.WriteAllLines(tempPath, lines);
-                return $"Функция протабулирована успешно. Файл сохранен в Temp: {tempPath}";
-            }
+            return resultBuilder.ToString();
         }
 
         private double CalculateFx(int x)
         {
-            // Проверка деления на ноль
             double denominator = x - 0.4;
             if (Math.Abs(denominator) < 0.000001)
                 return 0;

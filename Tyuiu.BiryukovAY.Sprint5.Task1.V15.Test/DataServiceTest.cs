@@ -11,18 +11,20 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Test
         {
             DataService ds = new DataService();
 
-            string path1 = Path.Combine(Environment.CurrentDirectory, "OutPutFileTask1.txt");
-            string path2 = Path.Combine(Path.GetTempPath(), "OutPutFileTask1.txt");
+            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask1.txt";
 
-            if (File.Exists(path1)) File.Delete(path1);
-            if (File.Exists(path2)) File.Delete(path2);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
 
             string result = ds.SaveToFileTextData(-5, 5);
 
-            FileInfo fileInfo1 = new FileInfo(path1);
-            FileInfo fileInfo2 = new FileInfo(path2);
+            string expectedStart = "-36.41";
+            Assert.IsTrue(result.StartsWith(expectedStart));
 
-            bool fileExists = fileInfo1.Exists || fileInfo2.Exists;
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
             bool wait = true;
             Assert.AreEqual(wait, fileExists);
         }
