@@ -4,11 +4,20 @@ internal class Program
 {
     private static void Main(string[] args)
     {
-        Console.WriteLine("Табулирование функции F(x) = (cos(x) / (x - 0.4)) + sin(x) * 8x + 2");
-        Console.WriteLine("Интервал: [-5; 5] с шагом 1\n");
+        DataService ds = new DataService();
 
-        DataService service = new DataService();
-        service.SaveToFileTextData(-5, 5);
+        string result = ds.SaveToFileTextData(-5, 5);
+        Console.WriteLine($"Результат: {result}");
+
+        string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask1.txt";
+        Console.WriteLine($"Файл создан: {path}");
+
+        Console.WriteLine("\nСодержимое файла:");
+        string[] fileContent = File.ReadAllLines(path);
+        foreach (string line in fileContent)
+        {
+            Console.WriteLine(line);
+        }
 
         Console.ReadKey();
     }

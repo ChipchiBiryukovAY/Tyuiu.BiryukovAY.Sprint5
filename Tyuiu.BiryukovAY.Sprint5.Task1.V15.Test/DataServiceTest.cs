@@ -9,15 +9,21 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Test
         [TestMethod]
         public void TestMethod1()
         {
-            var service = new DataService();
-            string filePath = "OutPutFileTask1.txt";
+            DataService ds = new DataService();
 
-            if (File.Exists(filePath))
-                File.Delete(filePath);
+            string path = $@"{Directory.GetCurrentDirectory()}\OutPutFileTask1.txt";
 
-            service.SaveToFileTextData(-5, 5);
+            if (File.Exists(path))
+            {
+                File.Delete(path);
+            }
 
-            Assert.IsTrue(File.Exists(filePath));
+            string result = ds.SaveToFileTextData(-5, 5);
+
+            FileInfo fileInfo = new FileInfo(path);
+            bool fileExists = fileInfo.Exists;
+            bool wait = true;
+            Assert.AreEqual(wait, fileExists);
         }
     }
 }

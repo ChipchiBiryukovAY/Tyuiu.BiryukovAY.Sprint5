@@ -9,35 +9,28 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
         {
             List<string> lines = new List<string>();
 
-            string header = "x\t\tF(x)";
-            string separator = "------------------------";
+            lines.Add("x\t\tF(x)");
+            lines.Add("------------------------");
 
-            Console.WriteLine(header);
-            Console.WriteLine(separator);
-
-            lines.Add(header);
-            lines.Add(separator);
-
-            for (int x = start; x <= stop; x++)
+            for (int x = start; x <= end; x++)
             {
                 double fx = CalculateFx(x);
-                string line = $"{x}\t\t{fx:F2}";
-                Console.WriteLine(line);
+                string line = $"{x}\t\t{Math.Round(fx, 2)}";
                 lines.Add(line);
             }
 
-            File.WriteAllLines("OutPutFileTask1.txt", lines);
+            string path = Path.Combine(Directory.GetCurrentDirectory(), "OutPutFileTask1.txt");
+            File.WriteAllLines(path, lines);
+
+            return "Функция протабулирована успешно";
         }
 
         private double CalculateFx(int x)
         {
-            double denominator = x - 0.4;
-            if (Math.Abs(denominator) < 0.000001)
+            if (x == 0.4)
                 return 0;
 
-            double part1 = Math.Cos(x) / denominator;
-            double part2 = Math.Sin(x) * 8 * x;
-            return part1 + part2 + 2;
+            return (Math.Cos(x) / (x - 0.4)) + (Math.Sin(x) * 8 * x) + 2;
         }
     }
 }
