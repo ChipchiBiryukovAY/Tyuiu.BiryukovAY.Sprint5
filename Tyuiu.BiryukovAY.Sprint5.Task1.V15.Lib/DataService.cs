@@ -9,10 +9,14 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
         {
             List<string> lines = new List<string>();
 
-            Console.WriteLine("x\t\tF(x)");
-            lines.Add("x\t\tF(x)");
-            Console.WriteLine("------------------------");
-            lines.Add("------------------------");
+            string header = "x\t\tF(x)";
+            string separator = "------------------------";
+
+            Console.WriteLine(header);
+            Console.WriteLine(separator);
+
+            lines.Add(header);
+            lines.Add(separator);
 
             for (int x = start; x <= stop; x++)
             {
@@ -27,10 +31,13 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
 
         private double CalculateFx(int x)
         {
-            if (Math.Abs(x - 0.4) < 0.000001)
+            double denominator = x - 0.4;
+            if (Math.Abs(denominator) < 0.000001)
                 return 0;
 
-            return (Math.Cos(x) / (x - 0.4)) + (Math.Sin(x) * 8 * x) + 2;
+            double part1 = Math.Cos(x) / denominator;
+            double part2 = Math.Sin(x) * 8 * x;
+            return part1 + part2 + 2;
         }
     }
 }
