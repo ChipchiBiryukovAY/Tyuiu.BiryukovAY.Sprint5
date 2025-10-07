@@ -13,10 +13,10 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task1.V15.Lib
             for (int x = start; x <= end; x++)
             {
                 double fx = CalculateFx(x);
-                string roundedValue = Math.Round(fx, 2).ToString().Replace(",", ".");
+                string roundedValue = Math.Round(fx, 2).ToString(); 
 
                 if (x != start)
-                    resultBuilder.Append("\\n");
+                    resultBuilder.Append("\n"); 
 
                 resultBuilder.Append(roundedValue);
             }
