@@ -11,16 +11,16 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
                 throw new ArgumentException("x не может быть равен 0");
 
             double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
+            double roundedY = Math.Round(y, 3);
 
             string tempPath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(tempPath, FileMode.Create)))
             {
-                writer.Write(y);
+                writer.Write(roundedY);
             }
 
-            byte[] fileBytes = File.ReadAllBytes(tempPath);
-            return Convert.ToBase64String(fileBytes);
+            return File.ReadAllBytes(tempPath);
         }
     }
 }

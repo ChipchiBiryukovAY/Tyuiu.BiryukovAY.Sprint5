@@ -11,10 +11,11 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Test
         {
             DataService ds = new DataService();
 
-            string result = ds.SaveToFileTextData(3);
+            byte[] result = ds.SaveToFileTextData(3);
+            string base64Result = System.Convert.ToBase64String(result);
 
             string expectedBase64 = "ppvEILByBMA=";
-            Assert.AreEqual(expectedBase64, result);
+            Assert.AreEqual(expectedBase64, base64Result);
+
         }
     }
-}

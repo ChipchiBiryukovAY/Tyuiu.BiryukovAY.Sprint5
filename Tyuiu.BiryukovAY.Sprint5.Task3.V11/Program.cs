@@ -7,12 +7,13 @@ internal class Program
         DataService ds = new DataService();
 
         int x = 3;
-        string result = ds.SaveToFileTextData(x);
+        byte[] result = ds.SaveToFileTextData(x);
+        string base64Result = Convert.ToBase64String(result);
 
-        Console.WriteLine($"Результат: {result}");
-        Console.WriteLine($"При x = {x}: y = {-2.778}"); 
+        Console.WriteLine($"Base64 результат: {base64Result}");
+        Console.WriteLine($"При x = {x}: y = {-2.778}");
 
-        string path = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "OutPutFileTask3.bin");
+        string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
         Console.WriteLine($"Файл создан: {path}");
 
         Console.ReadKey();
