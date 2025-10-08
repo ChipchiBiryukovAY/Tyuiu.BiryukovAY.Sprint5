@@ -8,22 +8,19 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
         public string SaveToFileTextData(int x)
         {
             if (x == 0)
-                throw new ArgumentException("x не может быть равен 0 (деление на ноль)");
+                throw new ArgumentException("x не может быть равен 0");
 
-            double numerator = 4 - Math.Pow(x, 3);
-            double denominator = Math.Pow(x, 2);
-            double y = numerator / denominator;
-            double roundedY = Math.Round(y, 3);
+            double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
 
-            string fileName = "OutPutFileTask3.bin";
-            string tempPath = Path.Combine(Path.GetTempPath(), fileName);
+            string tempPath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
 
             using (BinaryWriter writer = new BinaryWriter(File.Open(tempPath, FileMode.Create)))
             {
-                writer.Write(roundedY);
+                writer.Write(y);
             }
 
-            return File.ReadAllBytes(tempPath);
+            byte[] fileBytes = File.ReadAllBytes(tempPath);
+            return Convert.ToBase64String(fileBytes);
         }
     }
 }
