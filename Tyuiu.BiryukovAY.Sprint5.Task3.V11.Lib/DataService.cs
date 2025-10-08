@@ -18,9 +18,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
             }
 
             byte[] fileBytes = File.ReadAllBytes(filePath);
-            string base64String = Convert.ToBase64String(fileBytes);
-
-            return base64String;
+            return Convert.ToBase64String(fileBytes);
         }
     }
 }
