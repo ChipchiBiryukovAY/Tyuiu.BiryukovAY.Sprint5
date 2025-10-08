@@ -13,8 +13,8 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Test
 
             string result = ds.SaveToFileTextData(3);
 
-            string expectedBase64 = "ppvEILByBMA=";
-            Assert.AreEqual(expectedBase64, result);
+            string expected = "-2,556";
+            Assert.AreEqual(expected, result);
 
         }
     }
