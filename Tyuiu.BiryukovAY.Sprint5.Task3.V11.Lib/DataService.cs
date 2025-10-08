@@ -5,7 +5,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
 {
     public class DataService : ISprint5Task3V11
     {
-        public string SaveToFileTextData(int x)
+        public byte[] SaveToFileTextData(int x)
         {
             if (x == 0)
                 throw new ArgumentException("x не может быть равен 0");
