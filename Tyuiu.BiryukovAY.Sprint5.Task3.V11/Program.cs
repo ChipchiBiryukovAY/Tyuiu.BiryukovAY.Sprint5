@@ -13,9 +13,6 @@ internal class Program
         Console.WriteLine($"При x = {x}:");
         Console.WriteLine($"Результат: {result}");
 
-        string filePath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
-        Console.WriteLine($"Файл сохранен: {filePath}");
-
         Console.ReadKey();
 
     }
