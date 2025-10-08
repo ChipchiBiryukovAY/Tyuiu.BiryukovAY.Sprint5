@@ -5,7 +5,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
 {
     public class DataService : ISprint5Task3V11
     {
-        public string SaveToFileTextData(int x)
+        static byte[] SaveToFileTextData(int x)
         {
             double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
             double roundedY = Math.Round(y, 3);
@@ -17,8 +17,6 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
                 writer.Write(roundedY);
             }
 
-            byte[] fileBytes = File.ReadAllBytes(filePath);
-            return Convert.ToBase64String(fileBytes);
+            return File.ReadAllBytes(filePath);
         }
-    }
 }
