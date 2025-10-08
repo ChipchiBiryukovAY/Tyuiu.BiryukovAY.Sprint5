@@ -10,11 +10,8 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Test
         public void TestMethod1()
         {
             DataService ds = new DataService();
-
             string result = ds.SaveToFileTextData(3);
-
-            string expected = "-2,556";
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual("ppvEILByBMA=", result);
 
         }
     }
