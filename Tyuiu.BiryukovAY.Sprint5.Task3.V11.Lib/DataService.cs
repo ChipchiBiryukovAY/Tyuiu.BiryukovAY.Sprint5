@@ -13,7 +13,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
             double numerator = 4 - Math.Pow(x, 3);
             double denominator = Math.Pow(x, 2);
             double y = numerator / denominator;
-            double roundedY = Math.Round(y, 3); 
+            double roundedY = Math.Round(y, 3);
 
             string fileName = "OutPutFileTask3.bin";
             string tempPath = Path.Combine(Path.GetTempPath(), fileName);
@@ -23,7 +23,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
                 writer.Write(roundedY);
             }
 
-            return roundedY.ToString();
+            return File.ReadAllBytes(tempPath);
         }
     }
 }

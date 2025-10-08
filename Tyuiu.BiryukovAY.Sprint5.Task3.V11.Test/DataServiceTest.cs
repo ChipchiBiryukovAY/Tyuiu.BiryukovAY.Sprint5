@@ -10,15 +10,12 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Test
         public void TestMethod1()
         {
             DataService ds = new DataService();
-            string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
 
-            if (File.Exists(path))
-                File.Delete(path);
+            byte[] result = ds.SaveToFileTextData(3);
+            string base64Result = System.Convert.ToBase64String(result);
 
-            string result = ds.SaveToFileTextData(3);
-
-            Assert.IsTrue(File.Exists(path));
-            Assert.AreEqual("-2,556", result);
+            string expectedBase64 = "ppvEILByBMA=";
+            Assert.AreEqual(expectedBase64, base64Result);
         }
     }
 }

@@ -7,15 +7,16 @@ internal class Program
         DataService ds = new DataService();
 
         int x = 3;
-        string result = ds.SaveToFileTextData(x);
-        Console.WriteLine($"Результат при x = {x}: {result}");
+        byte[] resultBytes = ds.SaveToFileTextData(x);
+
+        string base64Result = Convert.ToBase64String(resultBytes);
+        Console.WriteLine($"Результат в base64: {base64Result}");
+
+        double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
+        Console.WriteLine($"Значение при x = {x}: {Math.Round(y, 3)}");
 
         string path = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
         Console.WriteLine($"Файл создан: {path}");
-
-        // Чтение и вывод содержимого бинарного файла
-        byte[] fileBytes = File.ReadAllBytes(path);
-        Console.WriteLine($"Бинарное содержимое: {BitConverter.ToString(fileBytes)}");
 
         Console.ReadKey();
     }
