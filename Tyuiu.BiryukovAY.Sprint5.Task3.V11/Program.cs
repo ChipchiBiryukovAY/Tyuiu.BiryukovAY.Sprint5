@@ -7,18 +7,18 @@ internal class Program
         DataService ds = new DataService();
 
         int x = 3;
-        byte[] result = ds.SaveToFileTextData(x);
-
-        double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
-        double roundedY = Math.Round(y, 3);
+        string result = ds.SaveToFileTextData(x);
 
         Console.WriteLine($"Выражение: y = (4 - x³) / x²");
         Console.WriteLine($"При x = {x}:");
-        Console.WriteLine($"Результат: {roundedY}");
+        Console.WriteLine($"Base64 результат: {result}");
+
+        // Вычисляем и выводим значение для проверки
+        double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
+        Console.WriteLine($"Значение: {Math.Round(y, 3)}");
 
         string filePath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
         Console.WriteLine($"Файл сохранен: {filePath}");
-        Console.WriteLine($"Размер файла: {result.Length} байт");
 
         Console.ReadKey();
 
