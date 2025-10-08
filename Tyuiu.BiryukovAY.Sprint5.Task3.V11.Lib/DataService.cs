@@ -17,7 +17,10 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
                 writer.Write(roundedY);
             }
 
-            return roundedY.ToString();
+            byte[] fileBytes = File.ReadAllBytes(filePath);
+            string base64String = Convert.ToBase64String(fileBytes);
+
+            return base64String;
         }
     }
 }
