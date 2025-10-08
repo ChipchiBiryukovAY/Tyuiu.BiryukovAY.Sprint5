@@ -8,7 +8,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
         public byte[] SaveToFileTextData(int x)
         {
             double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
-            double roundedY = Math.Round(y, 3); 
+            double roundedY = Math.Round(y, 3);
 
             string filePath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
 
@@ -17,7 +17,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Lib
                 writer.Write(roundedY);
             }
 
-            return File.ReadAllBytes(filePath);
+            return roundedY.ToString();
         }
     }
 }
