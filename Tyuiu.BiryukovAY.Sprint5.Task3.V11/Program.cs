@@ -14,9 +14,9 @@ internal class Program
         Console.WriteLine($"Base64 результат: {result}");
 
         double y = (4 - Math.Pow(x, 3)) / Math.Pow(x, 2);
-        Console.WriteLine($"Значение: {Math.Round(y, 3)}");
+        Console.WriteLine($"Числовое значение: {Math.Round(y, 3)}");
 
-        string filePath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
+        string filePath = System.IO.Path.Combine(System.IO.Path.GetTempPath(), "OutPutFileTask3.bin");
         Console.WriteLine($"Файл сохранен: {filePath}");
 
         Console.ReadKey();
