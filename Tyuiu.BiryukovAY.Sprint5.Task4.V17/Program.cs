@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Globalization;
 using Tyuiu.BiryukovAY.Sprint5.Task4.V17.Lib;
 internal class Program
 {
@@ -6,7 +7,9 @@ internal class Program
     {
         DataService ds = new DataService();
 
-        string filePath = @"C:\DataSprint5\InPutDataFileTask4V0.txt";
+        CultureInfo.CurrentCulture = CultureInfo.InvariantCulture;
+
+        string filePath = @"/app/data/AssesmentData/C#/Sprint5Task4/InPutDataFileTask4V17.txt";
 
         Console.WriteLine("Чтение значения X из файла и вычисление формулы");
         Console.WriteLine($"Путь к файлу: {filePath}");
@@ -18,7 +21,7 @@ internal class Program
             if (!File.Exists(filePath))
             {
                 Console.WriteLine($"Ошибка: Файл не найден по пути {filePath}");
-                Console.WriteLine("Убедитесь, что папка C:\\DataSprint5\\ существует и файл скопирован");
+                Console.WriteLine("Проверьте путь к файлу");
             }
             else
             {
