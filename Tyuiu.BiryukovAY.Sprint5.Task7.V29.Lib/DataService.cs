@@ -9,8 +9,10 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task7.V29.Lib
         {
             string text = File.ReadAllText(path);
 
-            string pattern = @"\b\d\b";
-            string resultText = Regex.Replace(text, pattern, "");
+            string pattern = @"\s?\b\d\b\s?";
+            string resultText = Regex.Replace(text, pattern, " ");
+
+            resultText = Regex.Replace(resultText, @"\s+", " ");
 
             string outputPath = Path.Combine(Path.GetTempPath(), "OutPutDataFileTask7V29.txt");
 

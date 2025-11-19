@@ -10,12 +10,12 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task7.V29.Test
         {
             DataService ds = new DataService();
             string tempFile = Path.Combine(Path.GetTempPath(), "test_input.txt");
-            File.WriteAllText(tempFile, "1 2 3 4 5 6 7 8 9 0");
+            File.WriteAllText(tempFile, "у меня есть 5");
 
             string resultPath = ds.LoadDataAndSave(tempFile);
             string resultText = File.ReadAllText(resultPath);
 
-            string expected = "          ";
+            string expected = "у меня есть";
             Assert.AreEqual(expected, resultText);
 
             File.Delete(tempFile);

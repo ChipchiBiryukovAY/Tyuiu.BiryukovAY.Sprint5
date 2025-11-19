@@ -1,39 +1,31 @@
 ﻿using System;
+using System.Text.RegularExpressions;
 using Tyuiu.BiryukovAY.Sprint5.Task7.V29.Lib;
 internal class Program
 {
     private static void Main(string[] args)
     {
-        DataService ds = new DataService();
+        Console.WriteLine("Удаление однозначных чисел из файла");
+        Console.WriteLine("==========================================");
 
         string inputPath = @"C:\DataSprint5\InPutDataFileTask7V29.txt";
-
-        Console.WriteLine("Удаление однозначных чисел из файла");
-        Console.WriteLine($"Входной файл: {inputPath}");
-        Console.WriteLine("==========================================");
 
         try
         {
             if (!File.Exists(inputPath))
             {
-                Console.WriteLine($"Ошибка: Файл не найден по пути {inputPath}");
-                Console.WriteLine("Убедитесь, что:");
-                Console.WriteLine("1. Папка C:\\DataSprint5\\ существует");
-                Console.WriteLine("2. Файл InPutDataFileTask7V29.txt скопирован в эту папку");
+                Console.WriteLine($"Файл не найден: {inputPath}");
+                Console.WriteLine("Создайте папку C:\\DataSprint5\\ и скопируйте туда файл");
             }
             else
             {
-                string outputPath = ds.LoadDataAndSave(inputPath);
-
-                Console.WriteLine($"Обработанный файл сохранен: {outputPath}");
-
-                string originalText = File.ReadAllText(inputPath);
-                string resultText = File.ReadAllText(outputPath);
+                string outputPath = LoadDataAndSave(inputPath);
+                Console.WriteLine($"Обработанный файл: {outputPath}");
 
                 Console.WriteLine("\nИсходный текст:");
-                Console.WriteLine(originalText);
-                Console.WriteLine("\nТекст после удаления однозначных чисел:");
-                Console.WriteLine(resultText);
+                Console.WriteLine(File.ReadAllText(inputPath));
+                Console.WriteLine("\nРезультат:");
+                Console.WriteLine(File.ReadAllText(outputPath));
             }
         }
         catch (Exception ex)
@@ -42,5 +34,19 @@ internal class Program
         }
 
         Console.ReadKey();
+    }
+
+    static string LoadDataAndSave(string path)
+    {
+        string text = File.ReadAllText(path);
+
+        string resultText = Regex.Replace(text, @"\s?\b\d\b\s?", " ");
+
+        resultText = Regex.Replace(resultText, @"\s+", " ").Trim();
+
+        string outputPath = Path.Combine(Path.GetTempPath(), "OutPutDataFileTask7V29.txt");
+        File.WriteAllText(outputPath, resultText);
+
+        return outputPath;
     }
 }
