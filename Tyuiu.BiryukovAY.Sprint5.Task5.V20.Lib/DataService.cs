@@ -12,24 +12,34 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task5.V20.Lib
             double sum = 0;
             int count = 0;
 
+            char[] separators = new char[] { ' ', '\t', ',', ';', ':', '\n', '\r' };
+
             foreach (string line in lines)
             {
                 if (string.IsNullOrWhiteSpace(line))
                     continue;
 
-                try
-                {
-                    double number = double.Parse(line.Trim(), CultureInfo.InvariantCulture);
+                string[] numberStrings = line.Split(separators, StringSplitOptions.RemoveEmptyEntries);
 
-                    if (IsInteger(number) && number >= -10 && number <= 10)
-                    {
-                        sum += number;
-                        count++;
-                    }
-                }
-                catch (FormatException)
+                foreach (string numberStr in numberStrings)
                 {
-                    continue;
+                    try
+                    {
+                        string normalized = numberStr.Replace(',', '.');
+
+                        if (double.TryParse(normalized, NumberStyles.Any, CultureInfo.InvariantCulture, out double number))
+                        {
+                            if (IsInteger(number) && number >= -10 && number <= 10)
+                            {
+                                sum += number;
+                                count++;
+                            }
+                        }
+                    }
+                    catch (FormatException)
+                    {
+                        continue;
+                    }
                 }
             }
 
@@ -42,7 +52,7 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task5.V20.Lib
 
         private bool IsInteger(double number)
         {
-            return Math.Abs(number % 1) < 0.000001;
+            return Math.Abs(number - Math.Round(number)) < 0.000001;
         }
     }
 }

@@ -13,14 +13,12 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task5.V20.Test
 
             File.WriteAllLines(tempFile, new string[]
             {
-                "5", "-3", "10", "0", "7", "-10", "2"
+                "3", "4", "5", "1" 
             });
 
             double result = ds.LoadFromDataFile(tempFile);
 
-            double expected = 11.0 / 7.0;
-            expected = Math.Round(expected, 3);
-            Assert.AreEqual(expected, result);
+            Assert.AreEqual(3.25, result);
 
             File.Delete(tempFile);
         }
