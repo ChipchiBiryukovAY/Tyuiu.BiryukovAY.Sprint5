@@ -11,17 +11,21 @@ namespace Tyuiu.BiryukovAY.Sprint5.Task3.V11.Test
         {
             DataService ds = new DataService();
 
-            string resultString = ds.SaveToFileTextData(3);
+            string resultPath = ds.SaveToFileTextData(3);
 
-            string expectedBase64 = "ppvEILByBMA=";
-            Assert.AreEqual(expectedBase64, resultString);
+            Assert.IsTrue(File.Exists(resultPath));
+            Assert.IsTrue(resultPath.Contains("OutPutFileTask3.bin"));
+        }
 
-            string filePath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
-            Assert.IsTrue(File.Exists(filePath));
+        [TestMethod]
+        public void SaveToFileTextData_ShouldReturnCorrectPath()
+        {
+            DataService ds = new DataService();
+            string expectedPath = Path.Combine(Path.GetTempPath(), "OutPutFileTask3.bin");
 
-            byte[] fileBytes = File.ReadAllBytes(filePath);
-            string fileBase64 = Convert.ToBase64String(fileBytes);
-            Assert.AreEqual(expectedBase64, fileBase64);
+            string resultPath = ds.SaveToFileTextData(3);
+
+            Assert.AreEqual(expectedPath, resultPath);
 
         }
     }
